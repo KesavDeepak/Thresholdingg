@@ -21,52 +21,53 @@ Use Otsu's method to segment the image and display the results.
 ## Program
 
 ```python
-# Load the necessary packages
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import cv2
 
-# Read the Image and convert to grayscale
-image = cv2.imread('profile.jpg',1)
-image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-image_gray = cv2.imread('GATE.jpg',0)
+# Step 2: Read the image and convert to grayscale
+image = cv2.imread('profile.png')  # Replace with your image file path
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
 
+# Original Image
+plt.subplot(2, 2, 1)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert from BGR to RGB for display
+plt.title("Original Image")
+plt.axis('off')
 
-# Use Global thresholding to segment the image
+# Step 3: Use Global Thresholding to segment the image
+# Apply global thresholding with a threshold value of 127
+_, global_thresholded = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
 
-ret,thresh_img1=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY)
-ret,thresh_img2=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY_INV)
-ret,thresh_img3=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO)
-ret,thresh_img4=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO_INV)
-ret,thresh_img5=cv2.threshold(image_gray,100,255,cv2.THRESH_TRUNC)
+# Step 4: Use Adaptive Thresholding to segment the image
+# Apply adaptive thresholding using Gaussian method
+adaptive_thresholded = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
 
-#Use Adaptive thresholding to segment the image
+# Step 5: Use Otsu's method to segment the image
+# Apply Otsu's method for optimal thresholding
+_, otsu_thresholded = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-thresh_img7=cv2.adaptiveThreshold(image_gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,11,2)
-thresh_img8=cv2.adaptiveThreshold(image_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
+# Global Thresholding
+plt.subplot(2, 2, 2)
+plt.imshow(global_thresholded, cmap='gray')
+plt.title("Global Thresholding")
+plt.axis('off')
 
+# Adaptive Thresholding
+plt.subplot(2, 2, 3)
+plt.imshow(adaptive_thresholded, cmap='gray')
+plt.title("Adaptive Thresholding")
+plt.axis('off')
 
-# Use Otsu's method to segment the image 
+# Otsu's Method
+plt.subplot(2, 2, 4)
+plt.imshow(otsu_thresholded, cmap='gray')
+plt.title("Otsu's Method")
+plt.axis('off')
 
-ret,thresh_img6=cv2.threshold(image_gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-
-titles=["Gray Image","Threshold Image (Binary)","Threshold Image (Binary Inverse)","Threshold Image (To Zero)"
-       ,"Threshold Image (To Zero-Inverse)","Threshold Image (Truncate)","Otsu","Adaptive Threshold (Mean)","Adaptive Threshold (Gaussian)"]
-images=[image_gray,thresh_img1,thresh_img2,thresh_img3,thresh_img4,thresh_img5,thresh_img6,thresh_img7,thresh_img8]
-# Display the results
-
-for i in range(0,9):
-    plt.figure(figsize=(10,10))
-  
-    plt.title("Original Image")
-    plt.imshow(image)
-    plt.axis("off")
-    
-    plt.title(titles[i])
-    plt.imshow(cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB))
-    plt.axis("off")
-    plt.show()
-
+# Show the plot
+plt.tight_layout()
+plt.show()
 ```
 ## Output
 
