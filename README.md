@@ -71,22 +71,12 @@ for i in range(0,9):
 ## Output
 
 ### Original Image
-![delhi-pl](https://github.com/user-attachments/assets/4b307b3a-fbab-400c-bed0-07c79730980d)
-### Gray Image
-![image](https://github.com/user-attachments/assets/a246c004-992f-4359-b859-4abb13ad637f)
+<img width="148" height="210" alt="image" src="https://github.com/user-attachments/assets/a20538ea-9fa8-44a4-8027-3deac104b450" />
 
-### Global Thresholding
-![image](https://github.com/user-attachments/assets/d5bffb30-01be-4d73-a2e3-119887de689f)
-![image](https://github.com/user-attachments/assets/8c9b1fe6-4ce9-4ff5-a227-7d263c47c04a)
-![image](https://github.com/user-attachments/assets/a4b4a8eb-0de5-4f60-8738-9a20780435c6)
-![image](https://github.com/user-attachments/assets/e2b8a98c-567c-44ff-afac-a7f39ab4b152)
+### Global Thresholding , Adaptive Thresholding, Optimum Global Thesholding using Otsu's Method
+<img width="484" height="469" alt="image" src="https://github.com/user-attachments/assets/453f74f3-5ae4-47a4-9ef6-f4ce4fe19619" />
 
-### Adaptive Thresholding
-![image](https://github.com/user-attachments/assets/35cef6b2-3a39-4928-bb3a-0f56bef797fa)
-![image](https://github.com/user-attachments/assets/e4fca39e-7dca-43b6-a228-d8e00f2169d2)
 
-### Optimum Global Thesholding using Otsu's Method
-![image](https://github.com/user-attachments/assets/5e33e7f4-81c2-401a-a171-b0bad663fb67)
 
 ## Result
 Thus the images are segmented using global thresholding, adaptive thresholding and optimum global thresholding using python and OpenCV.
